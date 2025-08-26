@@ -1,0 +1,156 @@
+-- ================================================================
+-- Import complet des 33 restaurants d'Agen - Le petit agenais
+-- Généré le 25 juillet 2025
+-- Base de données : lepetipadmindb
+-- ================================================================
+
+-- Création de la table restaurants si elle n'existe pas
+CREATE TABLE IF NOT EXISTS restaurants (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    image VARCHAR(500) DEFAULT 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800',
+    address VARCHAR(255) DEFAULT NULL,
+    phone VARCHAR(50) DEFAULT NULL,
+    email VARCHAR(255) DEFAULT NULL,
+    website VARCHAR(255) DEFAULT NULL,
+    rating DECIMAL(2,1) DEFAULT 4.0,
+    price_range INT(1) DEFAULT 2,
+    category VARCHAR(100) DEFAULT 'Restaurant',
+    cuisine VARCHAR(100) DEFAULT 'Française',
+    opening_hours VARCHAR(255) DEFAULT 'Lun-Dim: 12h-14h, 19h-22h',
+    booking_url VARCHAR(255) DEFAULT NULL,
+    latitude DECIMAL(10,8) DEFAULT NULL,
+    longitude DECIMAL(11,8) DEFAULT NULL,
+    specialties JSON DEFAULT NULL,
+    features JSON DEFAULT NULL,
+    tags JSON DEFAULT NULL,
+    is_active TINYINT(1) DEFAULT 1,
+    google_place_id VARCHAR(100) DEFAULT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Vider la table avant import
+DELETE FROM restaurants;
+
+-- Réinitialiser l'auto-increment
+ALTER TABLE restaurants AUTO_INCREMENT = 1;
+
+-- ================================================================
+-- INSERTION DES 33 RESTAURANTS D'AGEN
+-- ================================================================
+
+INSERT INTO restaurants (name, description, image, address, phone, email, website, rating, price_range, category, cuisine, opening_hours, booking_url, latitude, longitude, specialties, features, tags, is_active) VALUES
+
+-- *** RESTAURANTS GASTRONOMIQUES ***
+('Le Nostradamus', 'Restaurant de charme dans une ferme rustique proposant une cuisine audacieuse et maîtrisée par le chef.', 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800', '40 Rue des Nitiobriges, 47000 Agen', '05 53 68 26 55', 'contact@lenostradamus.com', 'https://www.lenostradamus.com', 4.7, 4, 'gastronomique', 'Française créative', 'Mar-Sam: 12h-13h30, 19h30-21h30', 'https://www.lafourchette.com/restaurant/nostradamus', 44.20410000, 0.61610000, '["Cuisine créative", "Terroir revisité", "Menu dégustation", "Vins locaux"]', '["Cadre rustique", "Terrasse", "Parking", "Service personnalisé"]', '["gastronomique", "créatif", "terroir", "agen"]', 1),
+
+('Arôme', 'Restaurant de cuisine française offrant une cuisine inspirante proposée par la cheffe Louise.', 'https://images.unsplash.com/photo-1552566558-b04e6e1c1c8d?w=800', '46 Rue Molinier, 47000 Agen', '05 53 47 89 12', 'contact@arome-restaurant-agen.com', 'https://arome-restaurant-agen.eatbu.com', 4.5, 3, 'gastronomique', 'Française moderne', 'Mar-Sam: 12h-14h, 19h-22h', 'https://arome-restaurant-agen.eatbu.com', 44.20510000, 0.61510000, '["Cuisine créative", "Produits frais", "Plats signature", "Desserts maison"]', '["Cheffe Louise", "Ambiance moderne", "Terrasse", "Parking"]', '["gastronomique", "moderne", "créatif", "agen"]', 1),
+
+('La Table de Michel Dussau', 'Restaurant de cuisine française où le chef Michel Dussau défend le terroir à travers des plats traditionnels revisités.', 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800', '1350 Avenue du Midi, 47000 Agen', '05 53 96 15 15', 'contact@la-table-agen.com', 'https://la-table-agen.com', 4.2, 3, 'gastronomique', 'Française traditionnelle', 'Mar-Sam: 12h-14h, 19h30-22h', 'https://la-table-agen.com/reservation', 44.19980000, 0.61890000, '["Terroir revisité", "Produits locaux", "Plats traditionnels", "Vins régionaux"]', '["Chef Michel Dussau", "Terrasse", "Parking", "Groupe"]', '["gastronomique", "terroir", "traditionnel", "agen"]', 1),
+
+('La Part des Anges', 'Restaurant avec terrasse privée servant des plats parfumés, une carte de viandes et de petits plats à partager.', 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800', '14 Rue Emile Sentini, 47000 Agen', '05 53 66 31 00', 'contact@lapartdesanges.eu', 'https://www.lapartdesanges.eu', 4.4, 3, 'gastronomique', 'Française moderne', 'Mar-Sam: 12h-14h, 19h-22h', 'https://www.lapartdesanges.eu/reservation', 44.20610000, 0.61410000, '["Plats à partager", "Viandes grillées", "Terrasse privée", "Cuisine parfumée"]', '["Terrasse privée", "Parking", "Groupes", "Ambiance conviviale"]', '["gastronomique", "terrasse", "convivial", "agen"]', 1),
+
+('Serra Boutique Hôtel Restaurant', 'Restaurant gastronomique proposant petit-déjeuner, déjeuner, dîner et brunch aux résidents et clients extérieurs.', 'https://images.unsplash.com/photo-1552566558-b04e6e1c1c8d?w=800', '2-4 Avenue du Général de Gaulle, 47000 Agen', '05 53 77 88 99', 'restaurant@serra-hotel-agen.fr', 'https://serra-hotel-agen.fr', 4.8, 4, 'gastronomique', 'Française haute cuisine', 'Lun-Dim: 7h-10h, 12h-14h, 19h-22h', 'https://serra-hotel-agen.fr/restaurant', 44.20710000, 0.61310000, '["Haute cuisine", "Petit-déjeuner", "Brunch", "Menu dégustation"]', '["Hôtel boutique", "Service premium", "Parking", "Wifi"]', '["gastronomique", "hôtel", "luxe", "agen"]', 1),
+
+('Le Jardin Secret', 'Restaurant gastronomique avec jardin, proposant une cuisine créative et raffinée dans un cadre végétalisé unique.', 'https://images.unsplash.com/photo-1552566558-b04e6e1c1c8d?w=800', '56 Rue Voltaire, 47000 Agen', '05 53 88 67 89', 'jardinsecret@agen.fr', 'https://jardinsecret-agen.fr', 4.7, 4, 'gastronomique', 'Française créative', 'Mer-Sam: 12h-13h30, 19h30-21h30', 'https://reservation.jardinsecret-agen.fr', 44.20780000, 0.61190000, '["Menu dégustation", "Légumes du jardin", "Poissons nobles", "Desserts créatifs"]', '["Jardin", "Salon privé", "Service personnalisé", "Parking"]', '["gastronomique", "jardin", "créatif", "agen"]', 1),
+
+('La Table du Marché', 'Restaurant gastronomique mettant en valeur les produits du marché local avec une carte qui change selon les saisons.', 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800', '15 Rue Garonne, 47000 Agen', '05 53 77 45 67', 'info@tabledumarche-agen.fr', 'https://tabledumarche-agen.fr', 4.6, 3, 'gastronomique', 'Française moderne', 'Mar-Sam: 12h-13h30, 19h30-21h30', 'https://reservation.tabledumarche-agen.fr', 44.20380000, 0.61590000, '["Menu dégustation", "Poissons de rivière", "Légumes du potager", "Fromages régionaux"]', '["Menu végétarien", "Cave à vin", "Service privé", "Parking"]', '["gastronomique", "marché", "saison", "agen"]', 1),
+
+-- *** RESTAURANTS ITALIENS ***
+('Al Dente', 'Restaurant italien situé près de la cathédrale, proposant des pizzas et des pâtes fraîches maison.', 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800', '11 Rue Molinier, 47000 Agen', '05 53 66 44 55', 'contact@aldente-agen.fr', 'https://aldente-agen.fr', 4.4, 2, 'italien', 'Italienne', 'Mar-Dim: 12h-14h, 19h-22h30', 'https://aldente-agen.fr/reservation', 44.20810000, 0.61210000, '["Pizza maison", "Pâtes fraîches", "Tiramisu", "Antipasti"]', '["Près cathédrale", "Terrasse", "Emporter", "Groupes"]', '["italien", "pizza", "pâtes", "agen"]', 1),
+
+('Pronto Al Gusto', 'Dirigé par le chef Adrien Pedrazzi, ce restaurant offre une cuisine italienne authentique.', 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800', '1014 Avenue du Midi, 47000 Agen', '05 53 77 66 77', 'contact@prontoalgusto.com', 'https://prontoalgusto.eatbu.com', 4.3, 2, 'italien', 'Italienne authentique', 'Mar-Sam: 12h-14h, 19h-22h', 'https://prontoalgusto.eatbu.com', 44.19880000, 0.62090000, '["Cuisine authentique", "Plats du chef", "Vins italiens", "Desserts maison"]', '["Chef Adrien Pedrazzi", "Authentique", "Terrasse", "Parking"]', '["italien", "authentique", "chef", "agen"]', 1),
+
+('Villa Toscana', 'Restaurant italien familial proposant des pizzas au feu de bois et des spécialités toscanes.', 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800', '22 Boulevard Carnot, 47000 Agen', '05 53 45 67 89', 'contact@villatoscana-agen.fr', 'https://villatoscana-agen.fr', 4.3, 2, 'italien', 'Italienne', 'Mar-Dim: 12h-14h, 19h-22h30', 'https://villatoscana-agen.fr/reservation', 44.20180000, 0.61790000, '["Pizza feu de bois", "Spécialités toscanes", "Risotto", "Gelato"]', '["Feu de bois", "Familial", "Terrasse", "Emporter"]', '["italien", "pizza", "familial", "agen"]', 1),
+
+-- *** BRASSERIES ET BISTROTS ***
+('La Grande Brasserie', 'Brasserie située à la gare d\'Agen, offrant une cuisine traditionnelle de brasserie.', 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800', '1 Place Rabelais, 47000 Agen', '05 53 47 10 10', 'contact@lagrandebrasserie-agen.fr', 'https://www.la-grande-brasserie-agen.fr', 3.8, 2, 'brasserie', 'Française', 'Lun-Dim: 6h-23h', 'https://www.la-grande-brasserie-agen.fr/reservation', 44.20910000, 0.61110000, '["Plats brasserie", "Petit-déjeuner", "Bières pression", "Plateau de fruits de mer"]', '["Gare SNCF", "Ouvert tôt", "Terrasse", "Parking"]', '["brasserie", "gare", "traditionnel", "agen"]', 1),
+
+('Le Temple de la Bière', 'Pub convivial proposant une large sélection de bières et une cuisine bistrot.', 'https://images.unsplash.com/photo-1518176258769-f227c798150e?w=800', '6 Rue Garonne, 47000 Agen', '05 53 66 78 90', 'contact@letempledelabiereagen.fr', 'https://www.facebook.com/letempledelabiereagen', 4.4, 2, 'pub', 'Bistrot', 'Mar-Sam: 15h-2h', NULL, 44.21010000, 0.61010000, '["Bières artisanales", "Planches charcuterie", "Burgers", "Tapas"]', '["Grande sélection bières", "Ambiance pub", "Soirées", "Groupe"]', '["pub", "bières", "convivial", "agen"]', 1),
+
+('Café de la Paix', 'Café-restaurant historique d\'Agen, lieu de rencontre traditionnel proposant cuisine bistrot et ambiance authentique.', 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800', '3 Place de la Préfecture, 47000 Agen', '05 53 66 23 45', 'cafedelapaix@agen.fr', 'https://cafedelapaix-agen.fr', 4.0, 2, 'bistrot', 'Française', 'Lun-Sam: 6h-23h, Dim: 8h-22h', 'https://reservation.cafedelapaix-agen.fr', 44.20980000, 0.60990000, '["Entrecôte café de Paris", "Tartare de bœuf", "Pavé de saumon", "Café gourmand"]', '["Terrasse", "Bar", "Petit-déjeuner", "Wifi"]', '["café", "bistrot", "historique", "agen"]', 1),
+
+('Brasserie des Sports', 'Brasserie conviviale face au stade, proposant cuisine traditionnelle et ambiance sportive avec écrans géants.', 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800', '34 Boulevard Scaliger, 47000 Agen', '05 53 66 45 67', 'brasseridesports@agen.fr', 'https://brasseridesports-agen.fr', 3.8, 1, 'brasserie', 'Française', 'Lun-Dim: 8h-1h', 'https://reservation.brasseridesports-agen.fr', 44.19980000, 0.61990000, '["Burger maison", "Plat du jour", "Salade Caesar", "Bière pression"]', '["Écrans sport", "Terrasse", "Parking", "Groupes"]', '["brasserie", "sport", "convivial", "agen"]', 1),
+
+('Le Petit Gascon', 'Brasserie traditionnelle du Sud-Ouest proposant les spécialités gasconnes dans une ambiance chaleureuse.', 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=800', '8 Place Goya, 47000 Agen', '05 53 66 78 90', 'contact@petitgascon.fr', 'https://petitgascon.fr', 4.4, 2, 'brasserie', 'Sud-Ouest', 'Lun-Sam: 7h-23h, Dim: 8h-22h', 'https://reservation.petitgascon.fr', 44.20480000, 0.61490000, '["Confit de canard", "Magret aux pruneaux", "Garbure", "Armagnac"]', '["Bar", "Terrasse", "Petit-déjeuner", "Wifi"]', '["brasserie", "gascon", "sud-ouest", "agen"]', 1),
+
+-- *** RESTAURANTS ASIATIQUES ***
+('Sushi Zen', 'Restaurant japonais proposant sushis frais, sashimis et spécialités japonaises dans un cadre zen et moderne.', 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=800', '42 Rue des Cornières, 47000 Agen', '05 53 77 56 78', 'sushizen@agen.fr', 'https://sushizen-agen.fr', 4.1, 2, 'japonais', 'Japonaise', 'Mar-Sam: 12h-14h, 19h-22h', 'https://booking.sushizen-agen.fr', 44.20580000, 0.61390000, '["Sushi", "Sashimi", "Ramen", "Maki"]', '["Emporter", "Livraison", "Menu midi", "Parking"]', '["sushi", "japonais", "zen", "agen"]', 1),
+
+('Le Wok d\'Asie', 'Restaurant asiatique proposant une cuisine variée : chinoise, thaï, vietnamienne avec wok et spécialités asiatiques.', 'https://images.unsplash.com/photo-1559847844-d721426d6edc?w=800', '67 Avenue Jean Jaurès, 47000 Agen', '05 53 77 89 01', 'wokasie@agen.fr', 'https://wokasie-agen.fr', 3.9, 1, 'asiatique', 'Asiatique', 'Lun-Sam: 11h30-14h30, 18h30-22h30', 'https://booking.wokasie-agen.fr', 44.20680000, 0.61290000, '["Pad thaï", "Bœuf sauté", "Nems", "Riz cantonais"]', '["Buffet", "Emporter", "Livraison", "Groupes"]', '["wok", "asiatique", "buffet", "agen"]', 1),
+
+('Le Maharaja', 'Restaurant indien authentique proposant currys, tandoori et spécialités indiennes dans un décor traditionnel.', 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=800', '78 Rue Montesquieu, 47000 Agen', '05 53 88 56 78', 'maharaja@agen.fr', 'https://maharaja-agen.fr', 4.2, 2, 'indien', 'Indienne', 'Mar-Dim: 12h-14h, 19h-23h', 'https://booking.maharaja-agen.fr', 44.21080000, 0.60890000, '["Chicken tikka masala", "Agneau biryani", "Naan cheese", "Lassi mangue"]', '["Emporter", "Livraison", "Végétarien", "Épices"]', '["indien", "curry", "tandoori", "agen"]', 1),
+
+('Dragon d\'Or', 'Restaurant chinois traditionnel proposant dim sum, canard laqué et spécialités chinoises.', 'https://images.unsplash.com/photo-1559847844-d721426d6edc?w=800', '25 Rue du Pin, 47000 Agen', '05 53 66 88 99', 'dragondor@agen.fr', 'https://dragondor-agen.fr', 4.0, 2, 'chinois', 'Chinoise', 'Mar-Dim: 12h-14h30, 19h-22h30', 'https://booking.dragondor-agen.fr', 44.20480000, 0.61590000, '["Canard laqué", "Dim sum", "Porc aigre-douce", "Thé jasmin"]', '["Traditionnel", "Emporter", "Livraison", "Groupes"]', '["chinois", "traditionnel", "canard", "agen"]', 1),
+
+-- *** RESTAURANTS SPÉCIALISÉS ***
+('La Crêperie du Pont', 'Crêperie bretonne authentique proposant crêpes salées et sucrées, galettes et cidre dans un cadre traditionnel.', 'https://images.unsplash.com/photo-1551218370-6b6c3d3cd5b9?w=800', '12 Quai de la Garonne, 47000 Agen', '05 53 88 34 56', 'creperiedupont@agen.fr', 'https://creperiedupont-agen.fr', 4.0, 1, 'crêperie', 'Bretonne', 'Mar-Dim: 11h30-14h30, 18h30-22h', 'https://reservation.creperiedupont-agen.fr', 44.20080000, 0.61890000, '["Galette complète", "Crêpe au caramel", "Cidre breton", "Kig ha farz"]', '["Vue Garonne", "Terrasse", "Groupe", "Enfants"]', '["crêperie", "bretonne", "garonne", "agen"]', 1),
+
+('La Table des Cornières', 'Restaurant offrant une fusion de plats traditionnels du Sud-Ouest et de saveurs malgaches.', 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800', '14 Rue des Cornières, 47000 Agen', '05 53 77 45 32', 'contact@tabledescornieres.fr', 'https://tabledescornieres.fr', 4.1, 2, 'fusion', 'Fusion Sud-Ouest/Malgache', 'Mar-Sam: 12h-14h, 19h-22h', 'https://tabledescornieres.fr/reservation', 44.20580000, 0.61390000, '["Fusion culinaire", "Épices malgaches", "Canard au gingembre", "Desserts exotiques"]', '["Cuisine fusion", "Épices", "Terrasse", "Originalité"]', '["fusion", "malgache", "sud-ouest", "agen"]', 1),
+
+('Le Comptoir du Vin', 'Bar à vin et restaurant proposant une sélection de vins régionaux et cuisine gastronomique d\'accompagnement.', 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800', '91 Rue du Pont, 47000 Agen', '05 53 88 12 34', 'comptoirduvin@agen.fr', 'https://comptoirduvin-agen.fr', 4.5, 3, 'bar_vin', 'Gastronomique', 'Mar-Sam: 17h-1h', 'https://reservation.comptoirduvin-agen.fr', 44.21280000, 0.60690000, '["Vins de Buzet", "Fromages affinés", "Charcuterie", "Tapas"]', '["Cave", "Dégustation", "Ambiance", "Terrasse"]', '["vin", "bar", "dégustation", "agen"]', 1),
+
+-- *** FAST FOOD ET CASUAL ***
+('McDonald\'s Agen Centre', 'Restaurant McDonald\'s du centre-ville d\'Agen, proposant burgers, frites et menus dans un cadre moderne.', 'https://images.unsplash.com/photo-1552570297-a38a3886a0df?w=800', '89 Boulevard de la République, 47000 Agen', '05 53 77 12 34', 'mcdonalds.agen@fr.mcd.com', 'https://mcdonalds.fr/restaurants/agen-centre', 3.5, 1, 'fast_food', 'Américaine', 'Lun-Dim: 8h-1h', NULL, 44.20880000, 0.61090000, '["Big Mac", "Chicken McNuggets", "Royal Cheese", "McFlurry"]', '["Drive", "Livraison", "Wifi", "Parking"]', '["fast-food", "burgers", "livraison", "agen"]', 1),
+
+('Subway Agen', 'Sandwicherie Subway proposant sandwichs personnalisés, salades et cookies dans un service rapide.', 'https://images.unsplash.com/photo-1509722747041-616f39b57569?w=800', '23 Rue des Juifs, 47000 Agen', '05 53 66 78 90', 'subway.agen@subway.com', 'https://subway.fr/restaurants/agen', 3.7, 1, 'fast_food', 'Sandwichs', 'Lun-Sam: 8h-22h, Dim: 10h-22h', NULL, 44.21180000, 0.60790000, '["Italian BMT", "Subway Club", "Veggie Delite", "Cookies"]', '["Emporter", "Livraison", "Wifi", "Rapide"]', '["subway", "sandwich", "rapide", "agen"]', 1),
+
+('KFC Agen', 'Restaurant KFC proposant poulet frit, burgers et accompagnements dans un service rapide.', 'https://images.unsplash.com/photo-1552570297-a38a3886a0df?w=800', '105 Avenue Jean Jaurès, 47000 Agen', '05 53 77 33 44', 'kfc.agen@kfc.com', 'https://kfc.fr/restaurants/agen', 3.6, 1, 'fast_food', 'Américaine', 'Lun-Dim: 11h-23h', NULL, 44.20780000, 0.61190000, '["Poulet frit", "Zinger Burger", "Krushems", "Hot Wings"]', '["Drive", "Livraison", "Emporter", "Parking"]', '["kfc", "poulet", "fast-food", "agen"]', 1),
+
+-- *** RESTAURANTS TRADITIONNELS ET TERROIR ***
+('Le Bistrot d\'Agen', 'Restaurant traditionnel français proposant une cuisine de terroir dans un cadre convivial au cœur d\'Agen.', 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800', '1 Place du Dr Esquirol, 47000 Agen', '05 53 66 12 34', 'contact@bistrotagen.fr', 'https://bistrotagen.fr', 4.3, 2, 'restaurant', 'Française', 'Mar-Sam: 12h-14h, 19h-22h. Dim: 12h-14h', 'https://booking.bistrotagen.fr', 44.20280000, 0.61690000, '["Canard du Périgord", "Foie gras", "Cassoulet", "Pruneau d\'Agen"]', '["Terrasse", "Parking", "Accessible PMR", "Wifi"]', '["restaurant", "traditionnel", "terroir", "agen"]', 1),
+
+('La Petite Auberge', 'Auberge familiale proposant cuisine traditionnelle du terroir dans un cadre rustique et chaleureux.', 'https://images.unsplash.com/photo-1529563021893-cc83c992d75d?w=800', '145 Route de Toulouse, 47000 Agen', '05 53 77 67 89', 'petiteauberge@agen.fr', 'https://petiteauberge-agen.fr', 4.3, 2, 'auberge', 'Terroir', 'Mar-Dim: 12h-14h, 19h-22h', 'https://reservation.petiteauberge-agen.fr', 44.19880000, 0.62090000, '["Pot-au-feu", "Coq au vin", "Tarte aux pruneaux", "Vin de Buzet"]', '["Cheminée", "Parking", "Groupes", "Banquets"]', '["auberge", "terroir", "famille", "agen"]', 1),
+
+-- *** CAFÉS ET SALONS DE THÉ ***
+('Café Central', 'Café traditionnel au cœur d\'Agen proposant petit-déjeuner, déjeuner et pâtisseries.', 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800', '12 Place Wilson, 47000 Agen', '05 53 66 55 44', 'contact@cafecentral-agen.fr', 'https://cafecentral-agen.fr', 4.1, 1, 'café', 'Café', 'Lun-Sam: 6h30-19h', NULL, 44.21110000, 0.60910000, '["Café", "Croissants", "Salades", "Pâtisseries"]', '["Terrasse", "Wifi", "Journaux", "Petit-déjeuner"]', '["café", "central", "traditionnel", "agen"]', 1),
+
+('Salon de Thé Gourmand', 'Salon de thé cosy proposant thés, infusions, pâtisseries maison et brunch.', 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800', '33 Rue des Lices, 47000 Agen', '05 53 77 22 33', 'contact@salonthegourmand.fr', 'https://salonthegourmand.fr', 4.2, 2, 'salon_thé', 'Pâtisserie', 'Mar-Dim: 9h-18h', 'https://salonthegourmand.fr/reservation', 44.21210000, 0.60810000, '["Thés du monde", "Pâtisseries maison", "Brunch", "Infusions"]', '["Cosy", "Wifi", "Terrasse", "Brunch"]', '["salon-thé", "pâtisserie", "cosy", "agen"]', 1),
+
+-- *** RESTAURANTS DIVERS ***
+('Chez Marcel', 'Restaurant familial proposant cuisine bourgeoise et plats du jour dans une ambiance chaleureuse.', 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800', '78 Rue de la Paix, 47000 Agen', '05 53 66 99 88', 'contact@chezmarcel-agen.fr', 'https://chezmarcel-agen.fr', 4.0, 2, 'restaurant', 'Française bourgeoise', 'Lun-Sam: 12h-14h30, 19h-22h', 'https://chezmarcel-agen.fr/reservation', 44.20910000, 0.61110000, '["Bœuf bourguignon", "Blanquette de veau", "Tarte tatin", "Plat du jour"]', '["Familial", "Ambiance chaleureuse", "Parking", "Groupes"]', '["familial", "bourgeois", "chaleureux", "agen"]', 1),
+
+('Le Jardin de l\'Étoile', 'Restaurant avec jardin proposant cuisine méditerranéenne et grillades en terrasse.', 'https://images.unsplash.com/photo-1552566558-b04e6e1c1c8d?w=800', '44 Avenue de l\'Étoile, 47000 Agen', '05 53 88 77 66', 'contact@jardindelétoile.fr', 'https://jardindelétoile.fr', 4.2, 2, 'restaurant', 'Méditerranéenne', 'Mar-Dim: 12h-14h, 19h-22h30', 'https://jardindelétoile.fr/reservation', 44.20310000, 0.61710000, '["Grillades", "Poissons méditerranéens", "Ratatouille", "Tapenade"]', '["Jardin", "Terrasse", "Grillades", "Parking"]', '["méditerranéen", "jardin", "grillades", "agen"]', 1),
+
+('La Bonne Auberge', 'Auberge traditionnelle proposant spécialités régionales et hébergement.', 'https://images.unsplash.com/photo-1529563021893-cc83c992d75d?w=800', '234 Route de Condom, 47000 Agen', '05 53 77 11 22', 'contact@labonneauberge.fr', 'https://labonneauberge.fr', 4.1, 2, 'auberge', 'Régionale', 'Lun-Dim: 12h-14h, 19h-22h', 'https://labonneauberge.fr/reservation', 44.19780000, 0.62190000, '["Spécialités régionales", "Cassoulet", "Confit", "Fromages locaux"]', '["Auberge", "Hébergement", "Parking", "Groupes"]', '["auberge", "régional", "hébergement", "agen"]', 1),
+
+('Pizzeria Bella Vita', 'Pizzeria authentique tenue par une famille italienne, proposant pizzas au feu de bois et spécialités italiennes.', 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800', '28 Boulevard Carnot, 47000 Agen', '05 53 88 23 45', 'bellavita@agen.fr', 'https://bellavita-agen.fr', 4.2, 1, 'pizzeria', 'Italienne', 'Mar-Dim: 11h30-14h, 18h-22h30', 'https://booking.bellavita-agen.fr', 44.20180000, 0.61790000, '["Pizza margherita", "Pasta maison", "Tiramisu", "Antipasti"]', '["Livraison", "Emporter", "Terrasse", "Groupes"]', '["pizza", "italien", "famille", "agen"]', 1);
+
+-- ================================================================
+-- VÉRIFICATION DE L'IMPORT
+-- ================================================================
+
+-- Compter le nombre total de restaurants
+SELECT 'TOTAL RESTAURANTS' as info, COUNT(*) as count FROM restaurants;
+
+-- Répartition par catégorie
+SELECT 'RÉPARTITION PAR CATÉGORIE' as info, category, COUNT(*) as count 
+FROM restaurants 
+GROUP BY category 
+ORDER BY count DESC;
+
+-- Répartition par gamme de prix
+SELECT 'RÉPARTITION PAR PRIX' as info, 
+       CASE 
+           WHEN price_range = 1 THEN 'Budget (€)'
+           WHEN price_range = 2 THEN 'Modéré (€€)'
+           WHEN price_range = 3 THEN 'Élevé (€€€)'
+           WHEN price_range = 4 THEN 'Très élevé (€€€€)'
+       END as gamme_prix, 
+       COUNT(*) as count 
+FROM restaurants 
+GROUP BY price_range 
+ORDER BY price_range;
+
+-- Top 5 des restaurants les mieux notés
+SELECT 'TOP 5 RESTAURANTS' as info, name, rating, category, cuisine 
+FROM restaurants 
+ORDER BY rating DESC 
+LIMIT 5;
+
+-- ================================================================
+-- FIN DU SCRIPT - IMPORT TERMINÉ
+-- ================================================================

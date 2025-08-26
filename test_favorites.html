@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Système de Favoris - Le petit agenais</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; margin: 2rem; }
+        .test-card { border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0; position: relative; }
+        .favorite-btn { position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.9); color: #6b7280; border: none; border-radius: 50%; width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
+        .favorite-btn:hover { background: white; transform: scale(1.1); }
+        .favorite-btn.active { color: #dc2626; }
+        .favorites-count { background: #dc2626; color: white; font-size: 0.75rem; padding: 0.125rem 0.375rem; border-radius: 9999px; margin-left: 0.25rem; display: none; }
+        .notification { position: fixed; top: 2rem; right: 2rem; z-index: 1000; background: #10b981; color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; transform: translateX(100%); transition: transform 0.3s ease; }
+        .btn { background: #3b82f6; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer; text-decoration: none; display: inline-block; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test Système de Favoris - Le petit agenais</h1>
+    
+    <div>
+        <strong>Navigation :</strong> 
+        ❤️ Favoris <span id="nav-counter" class="favorites-count">0</span>
+        <button onclick="clearAllFavorites()" class="btn" style="margin-left: 1rem;">Vider favoris</button>
+    </div>
+    
+    <h2>Restaurants de test :</h2>
+    <div class="grid">
+        <div class="test-card card">
+            <button class="favorite-btn" data-id="1" data-type="restaurant">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                </svg>
+            </button>
+            <h3>Restaurant Le Margoton</h3>
+            <p>Restaurant traditionnel du Sud-Ouest avec spécialités locales</p>
+            <p style="color: #6b7280; font-size: 0.875rem;">52 Rue Garonne, 47000 Agen</p>
+        </div>
+        
+        <div class="test-card card">
+            <button class="favorite-btn" data-id="2" data-type="restaurant">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                </svg>
+            </button>
+            <h3>Bistro des Halles</h3>
+            <p>Bistro moderne au cœur du marché couvert</p>
+            <p style="color: #6b7280; font-size: 0.875rem;">Place des Halles, 47000 Agen</p>
+        </div>
+        
+        <div class="test-card card">
+            <button class="favorite-btn" data-id="3" data-type="restaurant">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                </svg>
+            </button>
+            <h3>La Table d'Armagnac</h3>
+            <p>Gastronomie raffinée et carte des vins exceptionnelle</p>
+            <p style="color: #6b7280; font-size: 0.875rem;">18 Rue du Président Carnot, 47000 Agen</p>
+        </div>
+    </div>
+    
+    <h2>Test Bouton Partage :</h2>
+    <div class="test-card">
+        <button class="btn" 
+                data-type="restaurant"
+                data-name="Restaurant Test"
+                data-description="Description du restaurant de test"
+                data-image="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800"
+                data-url="https://example.com/test"
+                onclick="shareItem(this)">
+            📤 Tester le partage
+        </button>
+    </div>
+    
+    <h2>État localStorage :</h2>
+    <div>
+        <button onclick="showLocalStorage()" class="btn">Afficher localStorage</button>
+        <button onclick="clearLocalStorage()" class="btn">Vider localStorage</button>
+    </div>
+    <pre id="localStorage-content" style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; margin-top: 1rem;"></pre>
+    
+    <!-- Système de favoris unifié -->
+    <script>
+    // === SYSTÈME DE FAVORIS UNIFIÉ - VERSION TEST ===
+    window.FavoritesSystem = {
+        storageKey: 'agen_favorites',
+        
+        init: function() {
+            this.bindEvents();
+            this.updateAllCounts();
+            console.log('✅ Système de favoris initialisé');
+            this.showLocalStorage();
+        },
+        
+        bindEvents: function() {
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.favorite-btn')) {
+                    e.preventDefault();
+                    const btn = e.target.closest('.favorite-btn');
+                    this.handleFavoriteClick(btn);
+                }
+            });
+        },
+        
+        handleFavoriteClick: function(btn) {
+            const id = parseInt(btn.getAttribute('data-id'));
+            const type = btn.getAttribute('data-type');
+            
+            if (!id || !type) return;
+            
+            const card = btn.closest('.card');
+            let name = 'Item', description = '', address = '';
+            
+            if (card) {
+                const titleEl = card.querySelector('h3');
+                name = titleEl ? titleEl.textContent.trim() : `${type} #${id}`;
+                
+                const descEl = card.querySelector('p');
+                description = descEl ? descEl.textContent.trim() : '';
+            }
+            
+            const favorite = { id, type, name, description, address, image: '' };
+            
+            if (this.isFavorite(id, type)) {
+                this.removeFavorite(id, type);
+                this.showNotification(`${name} retiré des favoris`, 'info');
+            } else {
+                this.addFavorite(favorite);
+                this.showNotification(`${name} ajouté aux favoris !`, 'success');
+            }
+            
+            this.updateAllCounts();
+            this.updateFavoriteButtons();
+            this.showLocalStorage();
+            
+            btn.style.transform = 'scale(1.2)';
+            setTimeout(() => { btn.style.transform = ''; }, 200);
+        },
+        
+        addFavorite: function(favorite) {
+            let favorites = this.getFavorites();
+            const exists = favorites.find(f => f.id === favorite.id && f.type === favorite.type);
+            if (!exists) {
+                favorite.addedAt = new Date().toISOString();
+                favorites.push(favorite);
+                this.saveFavorites(favorites);
+                return true;
+            }
+            return false;
+        },
+        
+        removeFavorite: function(id, type) {
+            let favorites = this.getFavorites();
+            const index = favorites.findIndex(f => f.id === id && f.type === type);
+            if (index > -1) {
+                favorites.splice(index, 1);
+                this.saveFavorites(favorites);
+                return true;
+            }
+            return false;
+        },
+        
+        isFavorite: function(id, type) {
+            const favorites = this.getFavorites();
+            return favorites.some(f => f.id === id && f.type === type);
+        },
+        
+        getFavorites: function() {
+            try {
+                const data = localStorage.getItem(this.storageKey);
+                return data ? JSON.parse(data) : [];
+            } catch (e) {
+                return [];
+            }
+        },
+        
+        saveFavorites: function(favorites) {
+            try {
+                localStorage.setItem(this.storageKey, JSON.stringify(favorites));
+            } catch (e) {
+                console.error('Erreur sauvegarde:', e);
+            }
+        },
+        
+        clearAll: function() {
+            if (confirm('Supprimer tous les favoris ?')) {
+                localStorage.removeItem(this.storageKey);
+                this.updateAllCounts();
+                this.updateFavoriteButtons();
+                this.showNotification('Tous les favoris supprimés', 'info');
+                this.showLocalStorage();
+            }
+        },
+        
+        updateAllCounts: function() {
+            const count = this.getFavorites().length;
+            const counter = document.getElementById('nav-counter');
+            if (counter) {
+                counter.textContent = count;
+                counter.style.display = count > 0 ? 'inline-block' : 'none';
+            }
+        },
+        
+        updateFavoriteButtons: function() {
+            document.querySelectorAll('.favorite-btn').forEach(btn => {
+                const id = parseInt(btn.getAttribute('data-id'));
+                const type = btn.getAttribute('data-type');
+                
+                if (id && type) {
+                    const isFav = this.isFavorite(id, type);
+                    btn.classList.toggle('active', isFav);
+                    
+                    const svg = btn.querySelector('svg path');
+                    if (svg) {
+                        if (isFav) {
+                            svg.setAttribute('d', 'm8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748z');
+                        } else {
+                            svg.setAttribute('d', 'm8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z');
+                        }
+                    }
+                }
+            });
+        },
+        
+        showNotification: function(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.style.transform = 'translateX(0)', 100);
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        },
+        
+        showLocalStorage: function() {
+            const content = document.getElementById('localStorage-content');
+            const favorites = this.getFavorites();
+            if (content) {
+                content.textContent = JSON.stringify(favorites, null, 2);
+            }
+        }
+    };
+    
+    // Fonctions globales
+    function clearAllFavorites() {
+        window.FavoritesSystem.clearAll();
+    }
+    
+    function showLocalStorage() {
+        window.FavoritesSystem.showLocalStorage();
+    }
+    
+    function clearLocalStorage() {
+        localStorage.clear();
+        window.FavoritesSystem.showLocalStorage();
+        window.FavoritesSystem.updateAllCounts();
+        window.FavoritesSystem.updateFavoriteButtons();
+    }
+    
+    // Fonction de partage
+    function shareItem(button) {
+        const name = button.getAttribute('data-name');
+        const description = button.getAttribute('data-description');
+        
+        const shareData = {
+            title: name + ' - Le petit agenais',
+            text: description,
+            url: window.location.href
+        };
+        
+        if (navigator.share) {
+            navigator.share(shareData)
+                .then(() => window.FavoritesSystem.showNotification('✅ Partage réussi'))
+                .catch(() => fallbackShare(shareData));
+        } else {
+            fallbackShare(shareData);
+        }
+    }
+    
+    function fallbackShare(shareData) {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(shareData.url)
+                .then(() => window.FavoritesSystem.showNotification('✅ Lien copié !'))
+                .catch(() => alert('Lien: ' + shareData.url));
+        } else {
+            alert('Lien: ' + shareData.url);
+        }
+    }
+    
+    // Initialisation
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('🚀 Initialisation...');
+        window.FavoritesSystem.init();
+    });
+    </script>
+</body>
+</html>
